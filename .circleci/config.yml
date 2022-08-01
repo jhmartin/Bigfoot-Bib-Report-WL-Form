@@ -23,9 +23,11 @@ jobs:
           command: "unix2dos *.html"
       - run:
           name: "Zipping files"
-          command: "zip -r artifact.zip *.md LICENSE *.txt *.html"
+          command: |
+            mkdir workspace
+            zip -r workspace/artifact.zip *.md LICENSE *.txt *.html
       - store_artifacts:
-          path: artifact.zip
+          path: workspace/artifact.zip
           destination: artifact-file
       - persist_to_workspace:
           root: workspace
