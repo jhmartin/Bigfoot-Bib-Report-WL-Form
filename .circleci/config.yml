@@ -31,6 +31,7 @@ jobs:
            curl -L -o ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz
            tar -xvzf ghr.tar.gz
            cp ghr_v0.14.0_linux_amd64/ghr /mnt/ramdisk/
+      - run: 
          name: "Publish Release on GitHub"
          command: |
            cd /mnt/ramdisk/
