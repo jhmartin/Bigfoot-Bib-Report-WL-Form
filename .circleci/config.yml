@@ -67,7 +67,7 @@ workflows:
       - package
       - release:
           requires:
-            - packate
+            - package
           filters:
             branches:
               ignore: /.*/
