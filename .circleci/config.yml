@@ -25,14 +25,14 @@ jobs:
           name: "Zipping files"
           command: |
             mkdir workspace
-            zip -r workspace/artifact.zip *.md LICENSE *.txt *.html
+            zip -r workspace/BF-Bib-Report-WLForm-<< pipeline.git.tag >>.zip *.md LICENSE *.txt *.html
       - store_artifacts:
-          path: workspace/artifact.zip
+          path: workspace/BF-Bib-Report-WLForm-<< pipeline.git.tag >>.zip
           destination: artifact-file
       - persist_to_workspace:
           root: workspace
           paths:
-            - artifact.zip
+            - BF-Bib-Report-WLForm-<< pipeline.git.tag >>.zip
 
   release:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -40,8 +40,6 @@ jobs:
     docker:
       - image: cimg/base:stable
     resource_class: small
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - attach_workspace:
           at: /mnt/ramdisk/artifacts
@@ -57,7 +55,7 @@ jobs:
          command: |
            cd /mnt/ramdisk/
            find /mnt/ramdisk
-           ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete << pipeline.git.tag >> /mnt/ramdisk/artifacts/artifact.zip
+           ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete << pipeline.git.tag >> /mnt/ramdisk/artifacts/BF-Big-Report-WLForm-<< pipeline.git.tag >>.zip
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
