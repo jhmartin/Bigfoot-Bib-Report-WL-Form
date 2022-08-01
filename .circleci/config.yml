@@ -16,7 +16,7 @@ jobs:
       - checkout
       - run:
           name: "Installing unix2dos"
-          command: "sudo apt-get install -y unix2dos"
+          command: "sudo apt-get install -y dos2unix"
       - run:
           name: "Fixing newlines"
           command: "unix2dos *.html"
