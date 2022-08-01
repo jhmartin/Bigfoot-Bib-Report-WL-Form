@@ -23,14 +23,14 @@ jobs:
           command: "unix2dos *.html"
       - run:
           name: "Zipping files"
-          command: "zip -r /mnt/ramdisk/artifact.zip *.md LICENSE *.txt *.html"
+          command: "zip -r artifact.zip *.md LICENSE *.txt *.html"
       - store_artifacts:
-          path: /mnt/ramdisk/artifact.zip
+          path: artifact.zip
           destination: artifact-file
       - persist_to_workspace:
           root: workspace
           paths:
-            - /mnt/ramdisk/artifact.zip
+            - artifact.zip
 
   release:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
