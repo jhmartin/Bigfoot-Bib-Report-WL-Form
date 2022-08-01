@@ -64,7 +64,7 @@ jobs:
 workflows:
   main:
     jobs:
-      - package
+      - package:
           filters:
             branches:
               ignore: /.*/
