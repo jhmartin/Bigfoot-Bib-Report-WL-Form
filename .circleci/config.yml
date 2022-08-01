@@ -10,6 +10,7 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: cimg/base:stable
+    resource_class: small
     # Add steps to the job
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
@@ -22,15 +23,26 @@ jobs:
           command: "unix2dos *.html"
       - run:
           name: "Zipping files"
-          command: "zip -r /tmp/foo.zip *.md LICENSE *.txt *.html"
+          command: "zip -r /mnt/ramdisk/artifact.zip *.md LICENSE *.txt *.html"
+      - run:
+          name: "Fetch ghr for release"
+          command: "curl -L -o /tmp/ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gzi"
+      - run:
+          name: "Fetch ghr for release"
+          command: |
+              cd /mnt/ramdisk/
+              curl -L -o ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz
+              tar -xvzf ghr.tar.gz
+              sudo cp ghr_v0.14.0_linux_amd64/ghr /usr/bin/
+              ls -l /usr/bin/gr
       - store_artifacts:
-          path: /tmp/foo.zip
+          path: /mnt/ramdisk/artifact.zip
           destination: artifact-file
 
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  say-hello-workflow:
+    package-workflow:
     jobs:
       - package
