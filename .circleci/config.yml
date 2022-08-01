@@ -28,7 +28,7 @@ jobs:
           path: /mnt/ramdisk/artifact.zip
           destination: artifact-file
 
-  ghrelease:
+  release:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
