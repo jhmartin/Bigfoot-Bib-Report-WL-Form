@@ -20,6 +20,13 @@ jobs:
       - run:
           name: "Fixing newlines"
           command: "unix2dos *.html"
+      - run:
+          name: "Zipping files"
+          command: "zip -r /tmp/foo.zip *.md LICENSE *.txt *.html"
+      - store_artifacts:
+          path: /tmp/foo.zip
+          destination: artifact-file
+
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
