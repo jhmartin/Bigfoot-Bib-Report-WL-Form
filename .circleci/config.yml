@@ -47,8 +47,6 @@ workflows:
     jobs:
       - package
       - publish-github-release
-          requires:
-          - package
 #          filters:
 #            branches:
 #              ignore: /.*/
