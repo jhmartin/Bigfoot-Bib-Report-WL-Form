@@ -65,6 +65,11 @@ workflows:
   main:
     jobs:
       - package
+          filters:
+            branches:
+              ignore: /.*/
+            tags:
+              only: /^v\d+/
       - release:
           requires:
             - package
