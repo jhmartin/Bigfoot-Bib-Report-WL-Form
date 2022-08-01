@@ -31,8 +31,8 @@ jobs:
          cd /mnt/ramdisk/
          curl -L -o ghr.tar.gz https://github.com/tcnksm/ghr/releases/download/v0.14.0/ghr_v0.14.0_linux_amd64.tar.gz
          tar -xvzf ghr.tar.gz
-         sudo cp ghr_v0.14.0_linux_amd64/ghr /usr/bin/
-         ls -l /usr/bin/gr
+         sudo cp ghr_v0.14.0_linux_amd64/ghr /usr/local/bin/
+         ls -l /usr/local/bin/gr
       - store_artifacts:
           path: /mnt/ramdisk/artifact.zip
           destination: artifact-file
