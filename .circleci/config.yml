@@ -43,12 +43,12 @@ jobs:
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
-  package-workflow:
+  main:
     jobs:
       - package
       - publish-github-release
           requires:
-            - package
+          - package
 #          filters:
 #            branches:
 #              ignore: /.*/
