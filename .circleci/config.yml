@@ -56,6 +56,7 @@ jobs:
          name: "Publish Release on GitHub"
          command: |
            cd /mnt/ramdisk/
+           find /mnt/ramdisk
            ./ghr -t ${GITHUB_TOKEN} -u ${CIRCLE_PROJECT_USERNAME} -r ${CIRCLE_PROJECT_REPONAME} -c ${CIRCLE_SHA1} -delete ${CIRCLE_BUILD_NUM} /mnt/ramdisk/artifacts/artifact.zip
 
 # Invoke jobs via workflows
